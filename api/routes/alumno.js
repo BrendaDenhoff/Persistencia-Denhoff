@@ -2,11 +2,13 @@ var express = require("express");
 var router = express.Router();
 var models = require("../models");
 
-router.get("/", (req, res) => {
+router.get("/:paginaActual&:cantidad", (req, res) => {
   models.alumno
     .findAll({
+      offset: (parseInt(req.params.paginaActual) * parseInt(req.params.cantidad)), 
+      limit: parseInt(req.params.cantidad),  
       attributes: ["id", "nombre", "apellido", "edad", "dni", "id_carrera"],
-     // include: [{as: 'Carrera-Relacionada', model:models.carrera, attributes: ["id", "nombre"]}]
+      include: [{as: 'Carrera-Relacionada', model:models.carrera, attributes: ["id", "nombre"]}]
     })
     .then(alumnos => res.send(alumnos))
     .catch(() => res.sendStatus(500));
