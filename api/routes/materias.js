@@ -5,7 +5,8 @@ var models = require("../models");
 router.get("/", (req, res) => {
   models.materia
     .findAll({
-      attributes: ["id", "nombre", "id_carrera"]
+      attributes: ["id", "nombre", "id_carrera"],
+      include: [{as: 'Carrera-Relacionada', model:models.carrera, attributes: ["id", "nombre"]}]
     })
     .then(materias => res.send(materias))
     .catch(() => res.sendStatus(500));
@@ -13,7 +14,7 @@ router.get("/", (req, res) => {
 
 router.post("/", (req, res) => {
   models.materia
-    .create({ nombre: req.body.nombre })
+    .create({ nombre: req.body.nombre, id_carrera: req.body.id_carrera })
     .then(materia => res.status(201).send({ id: materia.id }))
     .catch(error => {
       if (error == "SequelizeUniqueConstraintError: Validation error") {

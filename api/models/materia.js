@@ -6,6 +6,10 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   materia.associate = function(models) {
     // associations can be defined here
+    materia.belongsTo(models.carrera, {
+      as : 'Carrera-Relacionada',
+      foreignKey: 'id_carrera'
+    })
   };
   return materia;
 };
