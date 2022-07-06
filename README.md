@@ -11,6 +11,7 @@ En esta API vas a encontrar 5 entidades (carreras, cursa, materias, usuarios y c
 En todas las entidades podes:
 1. Obtener todos los registros:
     Get => /nombre_tabla/PaginaActual&CantidadRegistros
+    
     Por ejemplo:
     Get => /car/0&10
     Get => /con/3&20
