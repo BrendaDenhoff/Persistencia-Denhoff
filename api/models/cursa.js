@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   cursa.associate = function(models) {
     // associations can be defined here
-    cursa.hasMany(models.materia, {
+    cursa.belongsTo(models.materia, {
       as: "Materias-Relacionadas",
       foreignKey: "id",
       sourceKey: 'id_materia'

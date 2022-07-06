@@ -41,6 +41,9 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false
       },
+      token: {
+        type: Sequelize.TEXT
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

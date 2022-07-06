@@ -45,8 +45,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       validate: {
         isNumeric: true  
-      }
-    }
+      },
+    },
+    token: {
+      type: DataTypes.TEXT
+    },
   }, {});
   usuario.associate = function(models) {
     // associations can be defined here
