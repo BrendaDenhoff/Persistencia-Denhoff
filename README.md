@@ -13,7 +13,9 @@ En todas las entidades podes:
     Get => /nombre_tabla/PaginaActual&CantidadRegistros
     
     Por ejemplo:
+    
     Get => /car/0&10
+    
     Get => /con/3&20
 
 2. Insertar un registro: (excepto controlador)
