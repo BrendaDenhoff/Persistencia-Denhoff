@@ -1,84 +1,20 @@
-## Proyecto_api
-En esta API vas a encontrar 5 entidades (carreras, cursa, materias, usuarios y controlador).
+## Estrategias de persistencia
 
-# General
-/car => Carreras
-/mat => Materias
-/usu => Usuarios
-/cur => Cursa
-/con => Controlador
+Descripción
+Se realizó una API con diferentes endpoints para cada modelo creado, a través del orm sequelize, se realizaron migraciones a la base de datos y se utilizó para realizar consultas o modificar datos.
 
-En todas las entidades podes:
+Funcionalidades
+Autenticación con JWT: Para consumir los endpoints se necesita un Header "Authorization" con valor "Bearer + token JWT".
 
-1. Obtener todos los registros:
+Registro de Usuarios: A través del enpoint /usu/sigUp podemos registrar un nuevo usuario. Devuelve el token para utilizar dentro de Authorization en los otros endpoints.
 
-    Get => /nombre_tabla/PaginaActual&CantidadRegistros
-    
-    Por ejemplo:
-    
-    Get => /car/0&10
-    
-    Get => /con/3&20
-    
+Login de Usuarios: A través del enpoint /usu/login podemos loguearnos con nuestro usuario y contraseña, si los datos están correctos se devolverá el token para consumir el resto de los endpoints.
 
-2. Insertar un registro: (excepto controlador)
+Contraseñas Encriptadas: Al crear un nuevo usuario con email y contraseña, la contraseña persistirá en nuestra base de datos de manera encriptada, para prevalecer la seguridad del usuario.
 
-Se deben declarar los valores en el body
+Paginación: Para todos los métodos GET, se proporcionan los query params opcionales "limit" y "offset". El limit define el maximo de registros a devolver, y el offset desde que registro empieza a contar.
 
-    Post => /nombre_tabla/
-    
-    Por ejemplo:
-    
-    Post => /usu/
-    
-
-3. Obtener un registro por id: 
-
-    Get => /nombre_tabla/id
-    
-    Por ejemplo:
-    
-    Get => /mat/5
-
-4. Actualziar informacion de un registro por id: (excepto controlador)
-
-Se debe declarar el valor a actualizar
-
-    PUT => /nombre_tabla/id
-    
-    Por ejemplo:
-    
-    PUT => /car/7
-
-5. Se elimina un registro por id: (excepto controlador)
-
-    DELETE => /nombre_tabla/id
-    
-    Por ejemplo:
-    
-    DELETE => /nombre_tabla/8
-
-
-# Usuarios
-
-1. Crear un usuario:
-
-Se deben declarar los valores en el body
-
-    POST => /usu/SigUp
-
-2. Iniciar seccion:
-
-Se deben declarar el email y contrasenia en el body
-
-    POST => /usu/login
-    
-Te devuelve un token para poder acceder a la api.
-
-
-3. Cambiar contrasenia
-
-    PUT => /usu/cambiarContrasenia
-
-# IMPORTANTE
-Recorda que para poder utilizar la api es necesario logearse y utilizar el token
+Dependencias
+jsonwebtoken: Para generar y verificar tokens.
+bcrypt: Para encriptar y desencriptar contraseñas
+Endpoints
